@@ -22,17 +22,58 @@ var menu = {
         }
     },
     editItemForm: {
-        id: "form.actions--delete",
+        cls: ".editItemForm",
+        id: "#editItemForm_",
+        itemName: "#editItemName_",
+        itemDescr: "#editItemDescr_",
+        itemPrice: "#editItemPrice_",
+        itemCat: "#editItemCat_",
+        itemErrArr: [],
+        itemNameErr: "#editItemNameErr_",
+        itemDescrErr: "#editItemDescrErr_",
+        itemPriceErr: "#editItemPriceErr_",
+        itemCatErr: "#editItemCatErr_",
         launchBtn: ".btn.actions--edit",
         modals: "#editItemModalsWrap > .modal",
-        validate: function() {
+        validate: function(formId) {
+            var nameFieldErr = "",
+                categoryFieldErr = "",
+                priceFieldErr = "";
 
-        },
-        submit: function() {
-            if (confirm("Do you really want to delete this item?") == true) {
-                return true;
+            var nameField = $(menu.editItemForm.itemName + formId);
+            if (nameField.val() === "") {
+                nameFieldErr = "Item name is required."
+                menu.editItemForm.itemErrArr.push(nameFieldErr);
+            }
+            $(menu.editItemForm.itemNameErr + formId).html(nameFieldErr);
+
+            var categoryField = $(menu.editItemForm.itemCat + formId);
+            if (categoryField.val() === "") {
+                categoryFieldErr = "Item category is required."
+                menu.editItemForm.itemErrArr.push(categoryField);
+            }
+            $(menu.editItemForm.itemCatErr + formId).html(categoryFieldErr);
+
+            var priceField = $(menu.editItemForm.itemPrice + formId);
+            if (priceField.val() === "") {
+                priceFieldErr = "Item price is required."
+                menu.editItemForm.itemErrArr.push(priceFieldErr);
             } else {
-                return false;
+                var priceFieldFormatted = parseFloat(priceField.val()).toFixed(2);
+                
+                priceField.val(priceFieldFormatted);
+            }
+            $(menu.editItemForm.itemPriceErr + formId).html(priceFieldErr);
+        },
+        submit: function(formId) {
+            menu.editItemForm.itemErrArr = [];
+
+            menu.editItemForm.validate(formId);
+
+            if (menu.editItemForm.itemErrArr.length > 0) {
+                return false; 
+            } else {
+                return true; 
             }
         }
     },
@@ -107,6 +148,22 @@ var menu = {
         $(menu.editItemForm.modals).on('hidden.bs.modal', function () {
             location.reload();
         });
+
+        // editItemForm onSubmit
+        var editItemForms = [...$(menu.editItemForm.cls)];
+        for (var i = 0; i < editItemForms.length; i++) {
+            editItemForms[i].onsubmit = function(e) {
+                var formIdNumber = e.target.id.match(/\d+/)[0];
+
+                var isSubmissionValid = menu.editItemForm.submit(formIdNumber);
+
+                if (isSubmissionValid) {
+                    return true; 
+                } else {
+                    return false;
+                }
+            }
+        }
     }
 };
 

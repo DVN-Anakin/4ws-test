@@ -1,3 +1,23 @@
+<?php 
+    if (isset($_POST['updateItem'])) {
+
+        $editItemId = safeInputData($_POST['editItemId']);
+        $editItemName = safeInputData($_POST['editItemName']);
+        $editItemDescr = safeInputData($_POST['editItemDescr']);
+        $editItemPrice = safeInputData($_POST['editItemPrice']);
+        $editItemCat = safeInputData($_POST['editItemCat']);
+
+        $updateItemQuery = "UPDATE products SET prod_name = '$editItemName', prod_descr = '$editItemDescr', prod_price = '$editItemPrice', prod_cat = '$editItemCat' WHERE prod_id = '$editItemId'";
+
+        $runUpdateItemQuery = mysqli_query($con, $updateItemQuery); 
+        
+        if($runUpdateItemQuery) {
+            echo "<script>alert('Item has been UPDATED!')</script>";
+            echo "<script>window.open('index.php','_self')</script>";
+        }
+    }
+?>
+
 <div class="modal fade" id="editItemModal_<?= $prodId ?>" tabindex="-1" role="dialog" aria-labelledby="editItemModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -8,7 +28,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form id="editItemForm_<?= $prodId ?>" class="editItemForm" action="" method="post">
+                    <div class="form-group d-none">
+                        <label for="editItemId" class="col-form-label">ID:&nbsp;*</label>
+                        <input type="text" class="form-control" id="editItemId_<?= $prodId ?>" name="editItemId"  value="<?= $prodId ?>">
+                    </div>
                     <div class="form-group">
                         <label for="editItemName" class="col-form-label">Name:&nbsp;*</label>
                         <input type="text" class="form-control" id="editItemName_<?= $prodId ?>" name="editItemName" placeholder="Item name" value="<?= $prodName ?>">
