@@ -36,16 +36,18 @@
             <div class="row">
                 <div class="col">
                     <h1><?= $prodName ?></h1>
+                    <br />
+                    <small><i>Product ID: <?= $prodId ?></i></small>
                 </div>
                 <div class="col text-right pageTopRightControlBtn">
-                    <a href="index.php" target="_blank" id="goToProductList" class="btn btn-success">All products&nbsp;<i class="fas fa-chevron-right"></i></a>
+                    <a href="index.php" target="_blank" id="goToProductList" class="btn btn-success">All products&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col">
                     <div class="row">
                         <div class="col-md-5 col-sm-8">
-                            <div class="p-3 mb-3 bg-success text-white"><?= $prodCat ?></div>
+                            <div class="p-3 mb-3 bg-success text-white"><strong><i><?= $prodCat ?></i></strong></div>
                         </div>
                     </div>
                     <?php if ($prodDescr !== "") { ?>
@@ -57,7 +59,7 @@
                     <?php } ?>
                     <div class="row">
                         <div class="col-md-5 col-sm-8">
-                            <div class="p-3 mb-3 bg-primary text-white"><?= $prodPrice ?> USD</div>
+                            <div class="p-3 mb-3 bg-primary text-white text-right"><strong><?= $prodPrice ?> USD</strong></div>
                         </div>
                     </div>
                 </div>
