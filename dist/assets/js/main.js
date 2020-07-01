@@ -197,7 +197,7 @@ var app = {
 
         return pageData;
     },
-    init: function() { 
+    init: function() {  
         var pageData = this.getPage();
 
         pageData.init();

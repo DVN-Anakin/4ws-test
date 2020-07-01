@@ -6,7 +6,7 @@
     include("includes/menuList.php");
     include("includes/deleteItem.php");
 
-    $pageTitle = "4WS Test - Menu list";
+    $pageTitle = "Menu list";
 ?>
 
 <html lang="en-US">
