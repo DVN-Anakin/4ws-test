@@ -23,7 +23,9 @@ var app = {
         return pageData;
     },
     init: function() { 
-        this.getPage().init();
+        var pageData = this.getPage();
+
+        pageData.init();
     }
 }
 
