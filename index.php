@@ -83,10 +83,22 @@
             </div>
         </main>
 
-        <?php     
-            include("includes/addNewItem.php");
-            include("includes/editItem.php");
-        ?>
+        <aside>
+            <div id="addNewItemModalsWrap">
+                <?php include("includes/addNewItem.php"); ?>
+            </div>
+            <div id="editItemModalsWrap">
+                <?php foreach ($products as $product) {
+                    $prodId = $product->id;
+                    $prodName = $product->name;
+                    $prodDescr = $product->descr;
+                    $prodPrice = $product->price;
+                    $prodCat = $product->cat;
+
+                    include("includes/editItem.php");
+                } ?>
+            </div>
+        </aside>
 
         <!-- scripts -->
         <script src="dist/assets/js/vendors/jquery-3.5.1.slim.min.js"></script>

@@ -24,6 +24,7 @@ var menu = {
     editItemForm: {
         id: "form.actions--delete",
         launchBtn: ".btn.actions--edit",
+        modals: "#editItemModalsWrap > .modal",
         validate: function() {
 
         },
@@ -89,14 +90,23 @@ var menu = {
         }
     },
     init: function() {
+
+        // Menu list search
         $(menu.mainTable.search).on("keyup", menu.mainTable.filterableTable);
 
+        // addNewItemForm onSubmit
         $(menu.addNewItemForm.id).on("submit", menu.addNewItemForm.submit);
 
+        // deleteItemForm onSubmit
         var deleteItemForms = [...$(menu.deleteItemForm.id)];
         for (var i = 0; i < deleteItemForms.length; i++) {
             deleteItemForms[i].onsubmit = menu.deleteItemForm.submit;
         }
+
+        // Reload the page after closing editItemForm modal
+        $(menu.editItemForm.modals).on('hidden.bs.modal', function () {
+            location.reload();
+        });
     }
 };
 
