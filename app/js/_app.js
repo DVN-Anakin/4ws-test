@@ -1,20 +1,20 @@
 var app = {
     pages: [
         {
-            title: 'Menu list',
+            id: 'index',
             data: menu 
         }, {
-            title: 'Detail',
+            id: 'product',
             data: detail
         }
     ],
     getPage: function() {
         var pages = this.pages;
-        var pageTitle = document.getElementsByTagName("title")[0].innerHTML.toLowerCase();
+        var pageFile = location.href.substring(location.href.lastIndexOf('/') + 1).toLowerCase();
         var pageData;
 
         for (var i = 0; i < pages.length; i++) {
-            if (pageTitle.includes(pages[i].title.toLowerCase())) {
+            if (pageFile.includes(pages[i].id.toLowerCase())) {
                 pageData = pages[i].data;
                 break;
             }

@@ -8,7 +8,7 @@
     $categories = array();
     $i = 0;
 
-    while($rowCategories = mysqli_fetch_array($runCategories)) {
+    while ($rowCategories = mysqli_fetch_array($runCategories)) {
         $oCategory = new stdClass();
 
         $oCategory->id = $rowCategories['cat_id'];
