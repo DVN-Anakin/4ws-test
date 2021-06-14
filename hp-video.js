@@ -1,4 +1,4 @@
-"use strict";
+"use strict";  console.log('WWWWWWWWWWWWW');
 function _typeof(t) {
     "@babel/helpers - typeof";
     return (_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
@@ -435,6 +435,7 @@ len = (items = document.querySelectorAll("#ixm39")).length; i < len; i++)
                                 })
                             },
                             initialize: function() {
+                                console.log('INITTTTTTTTT');
                                 this.element.find("img").length ? this.checkImgLoad() : this.initSlider()
                             },
                             checkImgLoad: function() {
