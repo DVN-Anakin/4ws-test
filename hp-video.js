@@ -1,3 +1,5 @@
+(function() {
+
 setTimeout(function() {
 console.log("SLICK SLIDER INIT");
 for (i = 0, len = (items = document.querySelectorAll("#iek135")).length; i < len; i++)
@@ -323,3 +325,6 @@ for (i = 0, len = (items = document.querySelectorAll("#iek135")).length; i < len
     }.bind(items[i])());
 
 }, 3000);
+
+   
+})();
